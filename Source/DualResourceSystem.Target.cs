@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
-using System.Collections.Generic;
 
 public class DualResourceSystemTarget : TargetRules
 {
@@ -10,6 +9,7 @@ public class DualResourceSystemTarget : TargetRules
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V6;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_7;
+		WindowsPlatform.Compiler = WindowsCompiler.VisualStudio2022;
 		ExtraModuleNames.Add("DualResourceSystem");
 	}
 }

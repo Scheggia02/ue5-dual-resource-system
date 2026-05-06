@@ -6,8 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "DRSCharacterConfigData.generated.h"
 
-class UAttributeSet;
-class UDRSGameplayAbility;
+class UGameplayEffect;
 
 /**
  * 
@@ -20,13 +19,13 @@ class DUALRESOURCESYSTEM_API UDRSCharacterConfigData : public UPrimaryDataAsset
 public:
 	UDRSCharacterConfigData();
 
-	TArray<TSoftClassPtr<UDRSGameplayAbility>> GetDefaultAbilities() const { return DefaultAbilities; }
-	TSoftClassPtr<UAttributeSet> GetDefaultAttributeSet() const { return DefaultAttributeSet; }
+	FORCEINLINE TArray<FPrimaryAssetId> GetDefaultAbilities() const { return DefaultAbilities; }
+	FORCEINLINE TSoftClassPtr<UGameplayEffect> GetDefaultAttributeSetEffect() const { return DefaultAttributeSetEffect; }
 	
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Config")
-	TArray<TSoftClassPtr<UDRSGameplayAbility>> DefaultAbilities;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Config", meta = (AllowedTypes = "DRSGameplayAbilityData"))
+	TArray<FPrimaryAssetId> DefaultAbilities;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Config")
-	TSoftClassPtr<UAttributeSet> DefaultAttributeSet;
+	TSoftClassPtr<UGameplayEffect> DefaultAttributeSetEffect;
 };
