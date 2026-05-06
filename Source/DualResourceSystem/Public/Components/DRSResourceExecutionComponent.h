@@ -7,6 +7,8 @@
 #include "DRSResourceExecutionComponent.generated.h"
 
 
+class UGameplayEffect;
+class UDRSAbilitySystemComponent;
 /**
  * Actor component reserved for executing resource-related gameplay behavior.
  *
@@ -19,9 +21,27 @@ class DUALRESOURCESYSTEM_API UDRSResourceExecutionComponent : public UActorCompo
 	GENERATED_BODY()
 
 public:	
-	/** Creates the component and disables ticking by default. */
 	UDRSResourceExecutionComponent();
 
-	/** Standard component begin-play hook. */
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	void CommitAbilityCost(float CostAmount);
+	
+	UFUNCTION(BlueprintCallable, Category = "Attributes")
+	bool CanCoverAbilityCost(float CostAmount) const;
+	
+	UFUNCTION(BlueprintPure, Category = "Attributes")
+	void GetCurrentResourceValues(float& OutHealth, float& OutMana) const;
+	
 	virtual void BeginPlay() override;
+	
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Resource Execution")
+	TSoftClassPtr<UGameplayEffect> ResourceCostGameplayEffectClass;
+	
+private:
+	float GetCurrentHealth() const;
+	float GetCriticalHealth() const;
+	float GetCurrentMana() const;
+	
+	UDRSAbilitySystemComponent* GetAbilitySystemComponent() const;
 };

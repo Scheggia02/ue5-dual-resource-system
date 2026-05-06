@@ -87,6 +87,7 @@ void UDRSAbilitySystemComponent::ApplyAttributeSetEffect(TSoftClassPtr<UGameplay
 	ApplyGameplayEffectSpecToSelf(*NewSpec.Data.Get());
 }
 
+
 void UDRSAbilitySystemComponent::OnAbilityPrimaryAssetsLoaded(TArray<FPrimaryAssetId> AbilitiesToGrant)
 {
 	for (const auto& AbilityId : AbilitiesToGrant)

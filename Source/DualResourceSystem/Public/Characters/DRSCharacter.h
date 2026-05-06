@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "DRSCharacter.generated.h"
 
+class UDRSHealthComponent;
 class UDRSCharacterConfigData;
 class UDRSAbilitySystemComponent;
 class UDRSResourceExecutionComponent;
@@ -29,6 +30,10 @@ public:
 
 	/** Standard actor initialization hook. */
 	virtual void BeginPlay() override;
+	/** Loads character configuration after the character receives a controller. */
+	virtual void PossessedBy(AController* NewController) override;
+	/** Allows derived classes to bind input while preserving base character setup. */
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	
 protected:
 	/** Primary asset id of the character configuration loaded when the character is possessed. */
@@ -38,26 +43,22 @@ protected:
 	/** Ability system component responsible for granted abilities, effects, and attributes. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	TObjectPtr<UDRSAbilitySystemComponent> AbilitySystemComponent;
-
-	/** Character attribute set registered with the ability system component. */
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	TObjectPtr<UDRSCharacterAttributeSet> AttributeSet;
+	TObjectPtr<UDRSHealthComponent> HealthComponent;
 	
 	/** Component reserved for resource execution behavior. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	TObjectPtr<UDRSResourceExecutionComponent> ResourceExecutionComponent;
-
+	
+	/** Character attribute set registered with the ability system component. */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	TObjectPtr<UDRSCharacterAttributeSet> AttributeSet;
+	
 	/** Loaded character configuration asset used during ability system initialization. */
 	UPROPERTY(Transient)
 	TObjectPtr<UDRSCharacterConfigData> CharacterConfigData;
 	
-public:
-	
-	/** Loads character configuration after the character receives a controller. */
-	virtual void PossessedBy(AController* NewController) override;
-	/** Allows derived classes to bind input while preserving base character setup. */
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
 private:
 	/** Requests the configured character config asset from the asset manager. */
 	void LoadCharacterConfigData();

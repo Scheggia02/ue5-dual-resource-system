@@ -75,7 +75,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Attributes")
 	void ApplyAttributeSetEffect(TSoftClassPtr<UGameplayEffect> AttributeSetEffectClass);
-	
+
 protected:
 	/**
 	 * Callback invoked after primary ability assets requested by GrantAbilitiesById() finish loading.

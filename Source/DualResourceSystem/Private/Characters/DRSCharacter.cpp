@@ -4,6 +4,7 @@
 
 #include "Attributes/DRSCharacterAttributeSet.h"
 #include "Components/DRSAbilitySystemComponent.h"
+#include "Components/DRSHealthComponent.h"
 #include "Components/DRSResourceExecutionComponent.h"
 #include "Data/DRSCharacterConfigData.h"
 #include "Engine/AssetManager.h"
@@ -17,6 +18,7 @@ ADRSCharacter::ADRSCharacter()
 	AttributeSet = CreateDefaultSubobject<UDRSCharacterAttributeSet>(TEXT("AttributeSet"));
 	
 	AbilitySystemComponent = CreateDefaultSubobject<UDRSAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	HealthComponent = CreateDefaultSubobject<UDRSHealthComponent>(TEXT("HealthComponent"));
 	ResourceExecutionComponent = CreateDefaultSubobject<UDRSResourceExecutionComponent>(TEXT("ResourceExecutionComponent"));
 }
 
