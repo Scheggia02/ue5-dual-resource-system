@@ -5,6 +5,7 @@
 
 #include "Abilities/Tasks/AbilityTask_ApplyRootMotionConstantForce.h"
 #include "Characters/DRSCharacter.h"
+#include "Input/DRSGameplayTags.h"
 
 UDRS_GA_Dash::UDRS_GA_Dash()
 {
@@ -12,6 +13,12 @@ UDRS_GA_Dash::UDRS_GA_Dash()
 	bCanActivateWhenOutOfHealth = false;
 	CostAmount = 20.0f;
 	InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+	
+	ActivationOwnedTags.AddTag(DRSGameplayTags::Ability_Dash);
+	ActivationBlockedTags.AddTag(DRSGameplayTags::Ability_Dash);
+	
+	// This ability is not re-triggerable, since it would allow the character to dash repeatedly without any cooldown by simply tapping the input button.
+	bRetriggerInstancedAbility = false;
 }
 
 void UDRS_GA_Dash::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,

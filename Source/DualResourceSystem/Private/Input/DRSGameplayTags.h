@@ -12,6 +12,9 @@ namespace DRSGameplayTags
 	DUALRESOURCESYSTEM_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Input_Jump);
 	DUALRESOURCESYSTEM_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Input_Attack);
 	DUALRESOURCESYSTEM_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Input_Dash);
+	
+	/** Ability-specific native gameplay tags used to identify abilities in ability specs and input configs. */
+	DUALRESOURCESYSTEM_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Dash);
 
 	/** Native gameplay tag used to identify the cost tag for abilities that use the Dual Resource System's resource execution rules. */
 	DUALRESOURCESYSTEM_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(SetByCaller_Cost);

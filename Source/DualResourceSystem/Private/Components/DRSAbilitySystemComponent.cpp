@@ -40,6 +40,16 @@ void UDRSAbilitySystemComponent::GrantAbilityByAsset(const UDRSGameplayAbilityDa
 	const TSubclassOf<UDRSGameplayAbility> LoadedAbilityClass = AbilityAssetToGrant->GetAbilityClass().LoadSynchronous();
 	checkf(IsValid(LoadedAbilityClass), TEXT("Failed to load ability class %s in GrantAbilityByAsset."), *AbilityAssetToGrant->GetName());
 
+	// Make sure the ability has not already been granted before
+	for (const auto& AbilitySpec : GetActivatableAbilities())
+	{
+		if (AbilitySpec.Ability->GetClass() == LoadedAbilityClass)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Attempted to grant ability %s on %s, but it has already been granted. Skipping."), *LoadedAbilityClass->GetName(), *GetOwner()->GetName());
+			return;
+		}
+	}
+	
 	FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(LoadedAbilityClass, AbilityAssetToGrant->GetAbilityLevel());
 	AbilitySpec.SourceObject = this;
 	

@@ -10,6 +10,8 @@ namespace DRSGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG_COMMENT(Input_Attack, "Input.Attack", "Tag for attack input");
 	UE_DEFINE_GAMEPLAY_TAG_COMMENT(Input_Dash, "Input.Dash", "Tag for dash input");
 	
+	UE_DEFINE_GAMEPLAY_TAG_COMMENT(Ability_Dash, "Ability.Dash", "Tag for dash ability");
+	
 	UE_DEFINE_GAMEPLAY_TAG_COMMENT(SetByCaller_Cost, "SetByCaller.Cost", "Tag for SetByCaller cost magnitude in resource execution gameplay effects");
 	
 	UE_DEFINE_GAMEPLAY_TAG_COMMENT(Status_Overdraw, "Status.Overdraw", "Tag for overdraw status, which allows abilities to overdraft health to cover costs");
